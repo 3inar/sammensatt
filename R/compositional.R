@@ -1,24 +1,31 @@
 ## compositional data functions
+
+#' @export
 closure <- function(v) {
   v/sum(v)
 }
 
+#' @export
 `%+%` <- function(u, v) {
   closure(u*v)
 }
 
+#' @export
 cneg <- function(v) {
   closure(1/v)
 }
 
+#' @export
 `%-%` <- function(u,v) {
   u %+% cneg(v)
 }
 
+#' @export
 `%.%` <- function(a, v) {
   closure(v^a)
 }
 
+#' @export
 `%<>%` <- function(u, v) {
   D <- length(u)
   ip = 0
@@ -31,10 +38,12 @@ cneg <- function(v) {
   ip/(2*D)
 }
 
+#' @export
 cnorm <- function(v) {
   sqrt(v %<>% v)
 }
 
+#' @export
 variation_matrix <- function(yy) {
   N <- ncol(yy)
   vmat <- matrix(nrow=N, ncol=N)
